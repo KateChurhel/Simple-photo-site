@@ -1,0 +1,72 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.9"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["./src", "./src/js"]
+      }
+    }
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "array-bracket-newline": ["error", { "multiline": true, "minItems": 3 }],
+    "array-element-newline": ["error", "consistent"],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+    "curly": ["error", "all"],
+    "func-style": ["error", "expression"],
+    "linebreak-style": ["off","windows"],
+    "max-depth": ["error", 2],
+    "max-len": ["error", { "code": 120 }],
+    "max-lines": ["error", {
+      "max": 200,
+      "skipBlankLines": true,
+      "skipComments": true
+    }],
+    "max-lines-per-function": ["error", {
+      "max": 200,
+      "skipBlankLines": true,
+      "skipComments": true,
+      "IIFEs": true
+    }],
+    "max-params": "error",
+    "no-async-promise-executor": "error",
+    "no-implicit-coercion": ["error", {
+      "allow": ["!!"]
+    }],
+    "no-invalid-this": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF":0 }],
+    "no-negated-condition": "error",
+    "no-self-assign": ["error", {"props": true}],
+    "no-undefined": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "prefer-object-spread": "error",
+    "wrap-regex": "error",
+    "no-param-reassign": 0,
+
+    "import/exports-last": "warn",
+    "import/prefer-default-export": "warn",
+
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/control-has-associated-label": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+
+    "react/prop-types": "off",
+    "react/jsx-sort-props": "error",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-direct-mutation-state": "error",
+    "react/no-unsafe": "error"
+  }
+}

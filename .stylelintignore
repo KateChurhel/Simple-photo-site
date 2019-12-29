@@ -1,0 +1,8 @@
+node_modules/
+build/
+env.js
+config/
+scripts/
+public/
+*.json
+*.tpl

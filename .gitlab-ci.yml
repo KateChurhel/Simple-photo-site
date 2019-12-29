@@ -1,0 +1,107 @@
+stages:
+    - build
+    - deploy
+
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+        - node_modules
+
+build:
+    stage: build
+    script:
+        - 'npm install'
+        - 'npm run build'
+        - 'scp version.txt.tpl build/version.txt'
+        - 'sed -i -e "s/##CI_JOB_ID##/${CI_JOB_ID}/; s/##CI_COMMIT_REF_NAME##/${CI_COMMIT_REF_NAME}/; s/##DATE##/$(date)/" ./build/version.txt'
+    artifacts:
+        paths:
+            - ./build
+    only:
+        refs:
+            - /^v\d+.\d+.\d+$/
+    tags:
+        - node10
+
+DEV:
+    stage: deploy
+    variables:
+        REACT_APP_DOC_CONTENT_URL: ${DEV_DOC_CONTENT_URL}
+        REACT_APP_API_URL: ${DEV_REACT_APP_API_URL}
+        REACT_APP_AWS_S3_BUCKET: ${DEV_AWS_S3_BUCKET}
+        REACT_APP_MAPBOX_TOKEN : ${DEV_REACT_APP_MAPBOX_TOKEN}
+        REACT_APP_AUTH0_CLIENT: ${DEV_REACT_APP_AUTH0_CLIENT}
+        REACT_APP_AUTH0_DOMAIN: ${DEV_REACT_APP_AUTH0_DOMAIN}
+    before_script:
+        - apt-get update
+        - apt-get -y install python3-pip
+        - pip3 install awscli
+    script:
+        - 'npm run configure'
+        - 'aws s3 sync ./build/ s3://${DEV_AWS_S3_BUCKET}/ --cache-control "max-age=31536000,public" --delete'
+        - 'aws s3 cp ./build/index.html s3://${DEV_AWS_S3_BUCKET}/index.html --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws s3 cp ./build/env.js s3://${DEV_AWS_S3_BUCKET}/env.js --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws cloudfront create-invalidation --distribution-id ${DEV_CDN_DISTRIBUTION_ID} --paths /index.html /env.js /version.txt'
+    dependencies:
+        - build
+    only:
+        refs:
+            - /^v\d+.\d+.\d+$/
+    tags:
+        - node10
+
+QA:
+    stage: deploy
+    variables:
+        REACT_APP_DOC_CONTENT_URL: ${QA_DOC_CONTENT_URL}
+        REACT_APP_API_URL: ${QA_REACT_APP_API_URL}
+        REACT_APP_AWS_S3_BUCKET: ${QA_AWS_S3_BUCKET}
+        REACT_APP_MAPBOX_TOKEN : ${QA_REACT_APP_MAPBOX_TOKEN}
+        REACT_APP_AUTH0_CLIENT: ${QA_REACT_APP_AUTH0_CLIENT}
+        REACT_APP_AUTH0_DOMAIN: ${QA_REACT_APP_AUTH0_DOMAIN}
+    before_script:
+        - apt-get update
+        - apt-get -y install python3-pip
+        - pip3 install awscli
+    script:
+        - 'npm run configure'
+        - 'aws s3 sync ./build/ s3://${QA_AWS_S3_BUCKET}/ --cache-control "max-age=31536000,public" --delete'
+        - 'aws s3 cp ./build/index.html s3://${QA_AWS_S3_BUCKET}/index.html --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws s3 cp ./build/env.js s3://${QA_AWS_S3_BUCKET}/env.js --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws cloudfront create-invalidation --distribution-id ${QA_CDN_DISTRIBUTION_ID} --paths /index.html /env.js /version.txt'
+    dependencies:
+        - build
+    only:
+        refs:
+            - /^v\d+.\d+.\d+$/
+    when: manual
+    tags:
+        - node10
+
+STG:
+    stage: deploy
+    variables:
+        REACT_APP_DOC_CONTENT_URL: ${STG_DOC_CONTENT_URL}
+        REACT_APP_API_URL: ${STG_REACT_APP_API_URL}
+        REACT_APP_AWS_S3_BUCKET: ${STG_AWS_S3_BUCKET}
+        REACT_APP_MAPBOX_TOKEN : ${STG_REACT_APP_MAPBOX_TOKEN}
+        REACT_APP_AUTH0_CLIENT : ${STG_REACT_APP_AUTH0_CLIENT}
+        REACT_APP_AUTH0_DOMAIN : ${STG_REACT_APP_AUTH0_DOMAIN}
+    before_script:
+        - apt-get update
+        - apt-get -y install python3-pip
+        - pip3 install awscli
+    script:
+        - 'npm run configure'
+        - 'aws s3 sync ./build/ s3://${STG_AWS_S3_BUCKET}/ --cache-control "max-age=31536000,public" --delete'
+        - 'aws s3 cp ./build/index.html s3://${STG_AWS_S3_BUCKET}/index.html --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws s3 cp ./build/env.js s3://${STG_AWS_S3_BUCKET}/env.js --acl public-read --cache-control "max-age=${INDEX_HTML_CACHE_TIME=0},private,must-revalidate,no-store,no-cache"'
+        - 'aws cloudfront create-invalidation --distribution-id ${STG_CDN_DISTRIBUTION_ID} --paths /index.html /env.js /version.txt'
+    dependencies:
+        - build
+    only:
+        refs:
+            - /^v\d+.\d+.\d+$/
+    when: manual
+    tags:
+        - node10
