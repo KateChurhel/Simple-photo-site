@@ -4,7 +4,7 @@ import ENV from 'config/env';
 import { RequestError } from '../helpers/exceptions';
 import { getAuthToken } from '../helpers/authorization';
 
-const baseUrl = `${ENV.REACT_APP_API_URL}`;
+const baseUrl = `${ENV.REACT_APP_API_URL || '/api'}`;
 const contentTypes = {
   json: 'application/json',
   text: 'text/html',
