@@ -1,0 +1,15 @@
+// -----------------------------------------------------------------------------
+//  Generic > Body
+// -----------------------------------------------------------------------------
+
+body {
+  background-color: $c-body-bg;
+  color: $c-body-text;
+  font-family: $default-font-family;
+  font-size: $default-font-size;
+}
+
+.container-fluid {
+  margin: 0 auto;
+  max-width: 1920px;
+}

@@ -4,5 +4,6 @@ env.js
 config/
 scripts/
 public/
+img/
 *.json
 *.tpl

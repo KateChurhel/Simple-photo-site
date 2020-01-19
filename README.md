@@ -1,4 +1,4 @@
-# Simple portfolio
+# Simple site with photos
 
 This doc provides how-to-get-started information.
 

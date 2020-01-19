@@ -9,7 +9,6 @@ module.exports = {
     'number-leading-zero': 'never',
     'at-rule-no-unknown': null,
     'color-named': 'never',
-    'no-descending-specificity': false,
 
     'scale-unlimited/declaration-strict-value': [
       [
@@ -24,7 +23,7 @@ module.exports = {
     'scss/operator-no-newline-before': true,
     'scss/operator-no-newline-after': true,
     'scss/media-feature-value-dollar-variable': 'always',
-    'scss/dollar-variable-pattern': '(^(font|screen|c|z|time|default)-)|(-width$)',
+    'scss/dollar-variable-pattern': '(^(font|screen|c|z|time|default|v)-)|(-width$)',
 
     'order/order': [
       {

@@ -1,0 +1,23 @@
+.action-button {
+  background: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  height: 20px;
+  margin-right: 10px;
+  width: 20px;
+
+  &.edit-button {
+    background-image: url('../../img/edit-icon.svg');
+  }
+
+  &.delete-button {
+    background-image: url('../../img/delete-icon.svg');
+  }
+
+  &:hover,
+  &:focus {
+    opacity: .8;
+  }
+}

@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+//  Objects > Select
+// -----------------------------------------------------------------------------
+
+.select {
+  & > &__control {
+    border-color: $c-border;
+    border-radius: 4px;
+
+    &:hover {
+      border-color: $c-border-active;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $c-shadow;
+    }
+
+    &--is-focused {
+      box-shadow: none;
+    }
+
+    &--menu-is-open {
+      border-color: $c-border-active;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $c-shadow;
+    }
+  }
+
+  & &__option--is-selected {
+    background-color: $c-light-blue;
+  }
+
+  &.error {
+    .select__control {
+      border-color: $c-error;
+
+      &:hover {
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $c-error;
+      }
+
+      &--is-focused {
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px $c-error;
+      }
+    }
+
+    .select__placeholder,
+    .select__indicator {
+      color: $c-error;
+    }
+  }
+}

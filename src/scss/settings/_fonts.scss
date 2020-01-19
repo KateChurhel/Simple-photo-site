@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+//  Settings > Fonts
+// -----------------------------------------------------------------------------
+
+$font-name-roboto: 'Roboto';
+$font-name-playfair-display: 'Playfair Display';
+
+// 01. Roboto
+@font-face {
+  font-family: $font-name-roboto;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url("/fonts/Roboto-Regular.woff2") format("woff2"),
+    url("/fonts/Roboto-Regular.woff") format("woff"),
+    url('/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $font-name-roboto;
+  font-style: normal;
+  font-weight: bold;
+  src:
+    url("/fonts/Roboto-Bold.woff2") format("woff2"),
+    url("/fonts/Roboto-Bold.woff") format("woff"),
+    url('/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+// 02. Playfair Display
+@font-face {
+  font-family: $font-name-playfair-display;
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url("/fonts/Playfair-Display-Regular.woff2") format("woff2"),
+    url("/fonts/Playfair-Display-Regular.woff") format("woff"),
+    url('/fonts/Playfair-Display-Regular.ttf') format('truetype');
+}

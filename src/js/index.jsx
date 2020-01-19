@@ -9,6 +9,7 @@ import 'config/env';
 // views
 import App from 'components/App';
 // styles
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'scss/index.scss';
 
 ReactDOM.render(

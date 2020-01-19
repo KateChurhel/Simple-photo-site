@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+//  Settings > Theme
+// -----------------------------------------------------------------------------
+//  01. Body
+//  02. Border
+//  03. Shadow
+//  04. Text
+//  05. Toasts
+// -----------------------------------------------------------------------------
+
+//  01. Body
+$c-body-bg: $c-white;
+$c-body-text: $c-black;
+
+//  02. Border
+$c-border: $c-gray-100;
+$c-border-active: $c-gray-600;
+
+//  03. Shadow
+$c-shadow: rgba($c-black, .13);
+
+//  04. Text
+$c-text-contact: $c-gray-500;
+
+//  05. Toasts
+$c-toast-info: $c-info;
+$c-toast-success: $c-success;
+$c-toast-warning: $c-warning;
+$c-toast-error: $c-error;

@@ -54,7 +54,7 @@
     "no-param-reassign": 0,
 
     "import/exports-last": "warn",
-    "import/prefer-default-export": "warn",
+    "import/prefer-default-export": 0,
 
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",

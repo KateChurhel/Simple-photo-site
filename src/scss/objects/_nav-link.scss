@@ -1,7 +1,13 @@
 // -----------------------------------------------------------------------------
-//  Generic
+//  Object > Nav-link
 // -----------------------------------------------------------------------------
 
-@import "~bootstrap";
-@import '~normalize.css';
-@import "body";
+.nav-link {
+  background: none;
+  border: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}

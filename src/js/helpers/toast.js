@@ -1,7 +1,7 @@
 // libraries
 import { toast, Flip } from 'react-toastify';
 
-import { TOAST_DEFAULT_OPTIONS, TOAST_TYPES } from 'constants/toast';
+import { TOAST_DEFAULT_OPTIONS, TOAST_TYPES } from '../constants/toast';
 
 const addToast = ({ text, ...params }) => {
   const options = {
