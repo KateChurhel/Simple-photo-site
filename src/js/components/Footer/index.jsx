@@ -44,7 +44,7 @@ const Footer = ({ SetActiveTag, activeTag = MAIN_TAG }) => {
     <footer>
       <Navbar
         bg="dark"
-        className="text-uppercase py-1 footer-tags"
+        className="text-uppercase py-1 "
         collapseOnSelect
         expand="lg"
         fixed="bottom"
@@ -53,7 +53,7 @@ const Footer = ({ SetActiveTag, activeTag = MAIN_TAG }) => {
         <div className="container-fluid px-0">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" className="my-1" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto flex-wrap">
+            <Nav className="mr-auto flex-wrap footer-tags">
               {tags.map((tag) => (
                 <button
                   className={`text-uppercase nav-link ${activeTag === tag ? 'active' : ''}`}

@@ -3,6 +3,14 @@
 // -----------------------------------------------------------------------------
 
 .footer-tags {
-  max-height: 100px;
+  @include media-breakpoint-up(lg) {
+    display: inherit;
+    margin-top: inherit;
+    max-height: 100px;
+  }
+
+  display: block;
+  margin-top: 20px;
+  max-height: 80vh;
   overflow: auto;
 }
